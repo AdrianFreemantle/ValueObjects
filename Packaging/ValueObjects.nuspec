@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ValueObjects</id>
+    <version>$version$</version>
+    <authors>Adrian Freemantle</authors>
+    <owners>Adrian Freemantle</owners>
+    <projectUrl>https://github.com/Clientele/ValueObjects</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Clientele Value Objects</description>
+  </metadata>
+  <files>
+    <file src="..\bin\ValueObjects.dll" target="lib\net45" />
+    <file src="..\bin\ValueObjects.pdb" target="lib\net45" />
+  </files>
+</package>
