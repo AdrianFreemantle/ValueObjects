@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
@@ -6,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace ValueObjects.Finance
 {
     [DataContract(Name = "CreditCardType", Namespace = "Finance")]
-    public struct CreditCardType : IEquatable<CreditCardType>
+    public struct CreditCardType : IEquatable<CreditCardType>, IEnumerable<CreditCardType>
     {
         enum CardTypes
         {
@@ -93,6 +95,11 @@ namespace ValueObjects.Finance
             return cardType.GetHashCode();
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -121,6 +128,11 @@ namespace ValueObjects.Finance
         public static implicit operator string(CreditCardType cardType)
         {
             return cardType.cardType.GetDescription();
+        }
+
+        public IEnumerator<CreditCardType> GetEnumerator()
+        {
+            return ObjectFactory.CreateInstances<CreditCardType, CardTypes>().GetEnumerator();
         }
 
         public override string ToString()

@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
 namespace ValueObjects.People
 {
     [DataContract(Name = "Gender", Namespace = "People")]
-    public struct Gender : IEquatable<Gender>
+    public struct Gender : IEquatable<Gender>, IEnumerable<Gender>
     {
         enum GenerTypes
         {
@@ -56,6 +58,11 @@ namespace ValueObjects.People
             return (int)gender;
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -84,6 +91,11 @@ namespace ValueObjects.People
         public static implicit operator int(Gender gender)
         {
             return (int)gender.gender;
+        }
+
+        public IEnumerator<Gender> GetEnumerator()
+        {
+            return ObjectFactory.CreateInstances<Gender, GenerTypes>().GetEnumerator();
         }
 
         public override string ToString()

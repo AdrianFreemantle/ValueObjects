@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Microsoft.CSharp.RuntimeBinder;
@@ -6,7 +8,7 @@ using Microsoft.CSharp.RuntimeBinder;
 namespace ValueObjects.People
 {   
     [DataContract(Name = "Title", Namespace = "People")]
-    public struct Title : IEquatable<Title>
+    public struct Title : IEquatable<Title>, IEnumerable<Title>
     {
         enum Titles
         {
@@ -71,6 +73,11 @@ namespace ValueObjects.People
             return (int)title;
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -99,6 +106,11 @@ namespace ValueObjects.People
         public static implicit operator int(Title title)
         {
             return (int)title.title;
+        }
+
+        public IEnumerator<Title> GetEnumerator()
+        {
+            return ObjectFactory.CreateInstances<Title, Titles>().GetEnumerator();
         }
 
         public override string ToString()
