@@ -28,16 +28,16 @@ namespace ValueObjects.People
         [DataMember(Name = "title")]
         private readonly Titles title;
 
-        public static Title None { get { return new Title(Titles.Unknown); } }
-        public static Title Mr { get { return new Title(Titles.Mr); } }
-        public static Title Mrs { get { return new Title(Titles.Mrs); } }
-        public static Title Miss { get { return new Title(Titles.Miss); } }
-        public static Title Dr { get { return new Title(Titles.Dr); } }
-        public static Title Prof { get { return new Title(Titles.Prof); } }
-        public static Title Hon { get { return new Title(Titles.Hon); } }
-        public static Title Rev { get { return new Title(Titles.Rev); } }
-        public static Title Ms { get { return new Title(Titles.Ms); } }
-        public static Title Chief { get { return new Title(Titles.Chief); } }
+        public static readonly Title None = new Title(Titles.Unknown);
+        public static readonly Title Mr = new Title(Titles.Mr);
+        public static readonly Title Mrs = new Title(Titles.Mrs);
+        public static readonly Title Miss = new Title(Titles.Miss);
+        public static readonly Title Dr = new Title(Titles.Dr);
+        public static readonly Title Prof = new Title(Titles.Prof);
+        public static readonly Title Hon = new Title(Titles.Hon);
+        public static readonly Title Rev = new Title(Titles.Rev);
+        public static readonly Title Ms = new Title(Titles.Ms);
+        public static readonly Title Chief = new Title(Titles.Chief);
 
         public Title(int titleType)
         {

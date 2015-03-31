@@ -44,13 +44,13 @@ namespace ValueObjects.Finance
         [DataMember(Name = "cardType")]
         private readonly CardTypes cardType;
 
-        public static CreditCardType Empty { get { return new CreditCardType(CardTypes.Unknown); } }
-        public static CreditCardType AmericanExpressCard { get { return new CreditCardType(CardTypes.AmericanExpressCard); } }
-        public static CreditCardType VisaCard { get { return new CreditCardType(CardTypes.VisaCard); } }
-        public static CreditCardType DinnersClubCard { get { return new CreditCardType(CardTypes.DinnersClubCard); } }
-        public static CreditCardType MasterCard { get { return new CreditCardType(CardTypes.MasterCard); } }
-        public static CreditCardType DiscoverCard { get { return new CreditCardType(CardTypes.DiscoverCard); } }
-        public static CreditCardType JapanCreditBureauCard { get { return new CreditCardType(CardTypes.JapanCreditBureauCard); } }
+        public static readonly CreditCardType Empty = new CreditCardType(CardTypes.Unknown); 
+        public static readonly CreditCardType AmericanExpressCard = new CreditCardType(CardTypes.AmericanExpressCard); 
+        public static readonly CreditCardType VisaCard = new CreditCardType(CardTypes.VisaCard); 
+        public static readonly CreditCardType DinnersClubCard = new CreditCardType(CardTypes.DinnersClubCard); 
+        public static readonly CreditCardType MasterCard = new CreditCardType(CardTypes.MasterCard);
+        public static readonly CreditCardType DiscoverCard = new CreditCardType(CardTypes.DiscoverCard); 
+        public static readonly CreditCardType JapanCreditBureauCard = new CreditCardType(CardTypes.JapanCreditBureauCard); 
 
         public CreditCardType(string cardNumber)
         {

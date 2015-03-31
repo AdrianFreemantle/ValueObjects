@@ -20,9 +20,9 @@ namespace ValueObjects.People
         [DataMember(Name = "gender")]
         private readonly GenerTypes gender;
 
-        public static Gender Unknown { get { return new Gender(GenerTypes.Unknown); } }
-        public static Gender Male { get { return new Gender(GenerTypes.Male); } }
-        public static Gender Female { get { return new Gender(GenerTypes.Female); } }
+        public static readonly Gender Unknown = new Gender(GenerTypes.Unknown);
+        public static readonly Gender Male = new Gender(GenerTypes.Male);
+        public static readonly Gender Female = new Gender(GenerTypes.Female);
 
         public Gender(int gender)
         {
