@@ -30,6 +30,11 @@ namespace ValueObjects.Finance
             return new Balance(balance - amount);
         }
 
+        public int ValueInCents()
+        {
+            return (int)(balance * 100);
+        }
+
         public override int GetHashCode()
         {
             return balance.GetHashCode();

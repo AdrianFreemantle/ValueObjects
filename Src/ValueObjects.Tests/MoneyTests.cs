@@ -48,5 +48,11 @@ namespace ValueObjects.Tests
             Balance result = Balance.FromAmount(-100) + Balance.FromAmount(-1000);
             result.ToString().ShouldBe("-R1,100.00");
         }
+
+        [TestMethod]
+        public void Can_be_represented_in_cents()
+        {
+            Money.FromAmount(100.30M).ValueInCents().ShouldBe(10030);
+        }
     }
 }

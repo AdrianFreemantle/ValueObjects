@@ -27,6 +27,11 @@ namespace ValueObjects.Finance
             return new Money(amout);
         }
 
+        public int ValueInCents()
+        {
+            return (int)(amount * 100);
+        }
+
         public override int GetHashCode()
         {
             return amount.GetHashCode();
