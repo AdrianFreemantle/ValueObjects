@@ -127,7 +127,7 @@ namespace ValueObjects.Finance
 
         public static implicit operator string(CreditCardType cardType)
         {
-            return cardType.cardType.GetDescription();
+            return cardType.ToString();
         }
 
         public IEnumerator<CreditCardType> GetEnumerator()

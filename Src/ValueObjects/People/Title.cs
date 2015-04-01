@@ -113,6 +113,11 @@ namespace ValueObjects.People
             return ObjectFactory.CreateInstances<Title, Titles>().GetEnumerator();
         }
 
+        public static implicit operator string(Title title)
+        {
+            return title.ToString();
+        }
+
         public override string ToString()
         {
             return title.GetDescription();

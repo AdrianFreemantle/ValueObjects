@@ -93,6 +93,11 @@ namespace ValueObjects.People
             return (int)gender.gender;
         }
 
+        public static implicit operator string(Gender gender)
+        {
+            return gender.ToString();
+        }
+
         public IEnumerator<Gender> GetEnumerator()
         {
             return ObjectFactory.CreateInstances<Gender, GenerTypes>().GetEnumerator();

@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+using ValueObjects.ContactDetail;
 
 namespace ValueObjects.Finance
 {
@@ -83,6 +84,11 @@ namespace ValueObjects.Finance
         public static bool operator !=(Balance left, Balance right)
         {
             return !Equals(left, right);
+        }
+
+        public static implicit operator string(Balance balance)
+        {
+            return balance.ToString();
         }
 
         public override string ToString()

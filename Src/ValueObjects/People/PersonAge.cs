@@ -82,6 +82,11 @@ namespace ValueObjects.People
             return !Equals(left, right);
         }
 
+        public static implicit operator string(PersonAge age)
+        {
+            return age.ToString();
+        }
+
         public override string ToString()
         {
             return age.ToString(CultureInfo.InvariantCulture);

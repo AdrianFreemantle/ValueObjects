@@ -146,6 +146,11 @@ namespace ValueObjects.People
             return dateOfBirth.birthDate;
         }
 
+        public static implicit operator string(DateOfBirth dateOfBirth)
+        {
+            return dateOfBirth.ToString();
+        }
+
         public override string ToString()
         {
             return birthDate.ToShortDateString();

@@ -84,7 +84,7 @@ namespace ValueObjects.ContactDetail
 
         public static implicit operator string(EmailAddress address)
         {
-            return address.address;
+            return address.ToString();
         }
 
         public override string ToString()

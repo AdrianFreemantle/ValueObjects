@@ -215,7 +215,7 @@ namespace ValueObjects.People
 
         public static implicit operator string(IdentityNumber identityNumber)
         {
-            return identityNumber.Number;
+            return identityNumber.ToString();
         }
 
         public override string ToString()

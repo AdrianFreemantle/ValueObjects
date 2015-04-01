@@ -121,7 +121,7 @@ namespace ValueObjects.Finance
 
         public static implicit operator string(BankAccountType bankAccount)
         {
-            return bankAccount.type.GetDescription();
+            return bankAccount.ToString();
         }
 
         public IEnumerator<BankAccountType> GetEnumerator()

@@ -93,7 +93,7 @@ namespace ValueObjects.Finance
 
         public static implicit operator string(CreditCard cardType)
         {
-            return cardType.cardNumber;
+            return cardType.ToString();
         }
 
         public override string ToString()

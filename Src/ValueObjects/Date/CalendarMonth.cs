@@ -191,6 +191,11 @@ namespace ValueObjects.Date
             return new DateTime(calendarMonth.year, calendarMonth.month, 1);
         }
 
+        public static implicit operator string(CalendarMonth calendarMonth)
+        {
+            return calendarMonth.ToString();
+        }
+
         public override string ToString()
         {
             if (year == 0 || month == 0)
