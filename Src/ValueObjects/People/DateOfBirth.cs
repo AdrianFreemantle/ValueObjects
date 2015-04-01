@@ -103,10 +103,10 @@ namespace ValueObjects.People
 
         public PersonAge AgeNextBirthday()
         {
-            if (DateTime.Now.Month >= birthDate.Month && DateTime.Now.Day >= birthDate.Day)
-            {
-                return PersonAge.AgeAtDate(this, new DateTime(DateTime.Now.Year + 1, birthDate.Month, birthDate.Day));
-            }
+            //if (DateTime.Now.Month >= birthDate.Month) //&& DateTime.Now.Day >= birthDate.Day)
+            //{
+            //    return PersonAge.AgeAtDate(this, new DateTime(DateTime.Now.Year + 1, birthDate.Month, birthDate.Day));
+            //}
 
             return PersonAge.AgeAtDate(this, new DateTime(DateTime.Now.Year, birthDate.Month, birthDate.Day));
         }
@@ -148,7 +148,7 @@ namespace ValueObjects.People
 
         public override string ToString()
         {
-            return birthDate.ToString(CultureInfo.InvariantCulture);
+            return birthDate.ToShortDateString();
         }
 
         public string ToString(string format)

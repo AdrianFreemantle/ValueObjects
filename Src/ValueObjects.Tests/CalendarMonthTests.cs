@@ -13,7 +13,7 @@ namespace ValueObjects.Tests
         public void DateTime_can_be_converted_to_a_CalendarMonth()
         {
             var calendarMonth = new CalendarMonth(DateTime.Now);
-            string testString = DateTime.Now.ToString("MM/yyyy", CultureInfo.InvariantCulture);
+            string testString = DateTime.Now.ToString("yyyy-MM", CultureInfo.InvariantCulture);
             string calendarMonthString = calendarMonth.ToString();
             calendarMonthString.ShouldBe(testString);
         }
@@ -23,7 +23,7 @@ namespace ValueObjects.Tests
         {
             var calendarMonth = CalendarMonth.Parse("1/2015");
             string calendarMonthString = calendarMonth.ToString();
-            calendarMonthString.ShouldBe("01/2015");
+            calendarMonthString.ShouldBe("2015-01");
         }
     }
 }

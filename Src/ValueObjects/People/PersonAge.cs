@@ -26,9 +26,22 @@ namespace ValueObjects.People
 
             int age = specificDate.Year - dateOfBirth.Year;
 
+            if(age <= 0)
+                return new PersonAge(age);
+
             if (dateOfBirth > specificDate.AddYears(-age))
             {
                 age--;
+            }
+
+            if (specificDate.Month == DateTime.Now.Month && dateOfBirth.Day == DateTime.Now.Day)
+            {
+                age++;
+            }
+            
+            if (specificDate.Month < DateTime.Now.Month)
+            {
+                age++;
             }
 
             return new PersonAge(age);

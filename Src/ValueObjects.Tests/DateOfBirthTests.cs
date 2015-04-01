@@ -44,7 +44,7 @@ namespace ValueObjects.Tests
         }
 
         [TestMethod]
-        public void Age_next_birthday_with_birthdate_pending_in_current_year()
+        public void Age_next_birthday_with_birthday_tomorrow()
         {
             var tenthBirthday = DateTime.Now.AddYears(-10).AddDays(1); //ten years ago, tommorrow
 
@@ -64,7 +64,7 @@ namespace ValueObjects.Tests
         }
 
         [TestMethod]
-        public void Age_next_birthday_with_birthdate_today()
+        public void Age_next_birthday_with_birthday_today()
         {
             var tenthBirthday = DateTime.Now.AddYears(-10); //ten years ago, today
 

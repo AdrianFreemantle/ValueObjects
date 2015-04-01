@@ -198,7 +198,22 @@ namespace ValueObjects.Date
                 return String.Empty;
             }
 
-            return String.Format("{0:00}/{1:0000}", month, year);
+            return String.Format("{0:0000}-{1:00}", year, month);
+        }
+
+        public string ToString(string format)
+        {
+            return new DateTime(year, month, 1).ToString(format);
+        }
+
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return new DateTime(year, month, 1).ToString(formatProvider);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return new DateTime(year, month, 1).ToString(format, formatProvider);
         }
     }
 }
