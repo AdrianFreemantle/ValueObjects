@@ -4,8 +4,8 @@ using System.Runtime.Serialization;
 
 namespace ValueObjects.ContactDetail
 {   
-    [DataContract(Name = "PhoneNumber", Namespace = "ContactDetail")]
-    public struct PhoneNumber : IEquatable<PhoneNumber>
+    [DataContract(Name = "TelephoneNumber", Namespace = "ContactDetail")]
+    public struct TelephoneNumber : IEquatable<TelephoneNumber>
     {
         enum PhoneNumberType
         {
@@ -34,20 +34,20 @@ namespace ValueObjects.ContactDetail
         private static readonly string[] PagersPrefix = { "088" };
         private static readonly string[] MaxinetPrefix = { "089" };
 
-        [DataMember(Name = "phoneNumber")]
+        [DataMember(Name = "TelephoneNumber")]
         private readonly string phoneNumber;
 
         [DataMember(Name = "phoneNumberType")]
         private readonly PhoneNumberType phoneNumberType;
 
-        public static PhoneNumber Empty { get { return new PhoneNumber(); } }
+        public static TelephoneNumber Empty { get { return new TelephoneNumber(); } }
 
-        public static PhoneNumber FromString(string phoneNumber)
+        public static TelephoneNumber FromString(string phoneNumber)
         {
-            return new PhoneNumber(phoneNumber);
+            return new TelephoneNumber(phoneNumber);
         }
 
-        public PhoneNumber(string rawPhoneNumber)
+        public TelephoneNumber(string rawPhoneNumber)
         {
             if (String.IsNullOrWhiteSpace(rawPhoneNumber))
             {
@@ -64,18 +64,18 @@ namespace ValueObjects.ContactDetail
             phoneNumberType = GetPhoneNumberType(phoneNumberDigits);
         }
 
-        public static PhoneNumber Parse(string value)
+        public static TelephoneNumber Parse(string value)
         {
-            return new PhoneNumber(value);
+            return new TelephoneNumber(value);
         }
 
-        public static bool TryParse(string value, out PhoneNumber phoneNumber)
+        public static bool TryParse(string value, out TelephoneNumber telephoneNumber)
         {
-            phoneNumber = Empty;
+            telephoneNumber = Empty;
 
             try
             {
-                phoneNumber = new PhoneNumber(value);
+                telephoneNumber = new TelephoneNumber(value);
                 return true;
             }
             catch (InvalidPhoneNumberException)
@@ -86,7 +86,7 @@ namespace ValueObjects.ContactDetail
 
         public static void ValidateNumberCanRecieveSms(string phoneNumber)
         {
-            Mandate.ParameterNotNullOrEmpty(phoneNumber, "phoneNumber");
+            Mandate.ParameterNotNullOrEmpty(phoneNumber, "TelephoneNumber");
 
             var telephoneNumber = FromString(phoneNumber);
 
@@ -210,27 +210,27 @@ namespace ValueObjects.ContactDetail
                 return false;
             }
 
-            return obj is PhoneNumber && Equals((PhoneNumber)obj);
+            return obj is TelephoneNumber && Equals((TelephoneNumber)obj);
         }
 
-        public bool Equals(PhoneNumber other)
+        public bool Equals(TelephoneNumber other)
         {
             return other.phoneNumber == phoneNumber && other.phoneNumberType == phoneNumberType;
         }
 
-        public static bool operator ==(PhoneNumber left, PhoneNumber right)
+        public static bool operator ==(TelephoneNumber left, TelephoneNumber right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(PhoneNumber left, PhoneNumber right)
+        public static bool operator !=(TelephoneNumber left, TelephoneNumber right)
         {
             return !Equals(left, right);
         }
 
-        public static implicit operator string(PhoneNumber phoneNumber)
+        public static implicit operator string(TelephoneNumber telephoneNumber)
         {
-            return phoneNumber.ToString();
+            return telephoneNumber.ToString();
         }
 
         public override string ToString()

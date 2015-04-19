@@ -56,7 +56,7 @@
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="People\PersonAgeException.cs" />
     <Compile Include="ContactDetail\InvalidPhoneNumberException.cs" />
-    <Compile Include="ContactDetail\PhoneNumber.cs" />
+    <Compile Include="ContactDetail\TelephoneNumber.cs" />
     <Compile Include="ContactDetail\PhoneNumberUnableToReceiveSmsException.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="Mandate.cs" />

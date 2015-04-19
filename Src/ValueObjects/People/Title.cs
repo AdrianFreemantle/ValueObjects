@@ -10,6 +10,8 @@ namespace ValueObjects.People
     [DataContract(Name = "Title", Namespace = "People")]
     public struct Title : IEquatable<Title>, IEnumerable<Title>
     {
+        const bool IgnoreCase = true;
+        
         enum Titles
         {
             [Description("")]
@@ -59,7 +61,7 @@ namespace ValueObjects.People
 
             try
             {
-                this.title = (Titles)Enum.Parse(typeof(Titles), title.Trim('.'));
+                this.title = (Titles)Enum.Parse(typeof(Titles), title.Trim('.'), IgnoreCase);
                 this.title.GetDescription(); //catch int value outside the allowed range
             }
             catch (Exception)

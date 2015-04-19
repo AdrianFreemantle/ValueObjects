@@ -11,6 +11,17 @@ namespace ValueObjects.Tests
     public class IdentityNumberTests
     {
         [TestMethod]
+        public void Sample_test()
+        {
+            IdentityNumber.IsValid("8905151430088");
+            IdentityNumber.IsValid("8905151430088");
+            IdentityNumber.IsValid("7002222412087");
+            IdentityNumber.IsValid("7808035176089");
+            IdentityNumber.IsValid("7503035682087");
+        }
+
+
+        [TestMethod]
         public void Valid_identity_number()
         {
             IdentityNumber.IsValid("7808035176089").ShouldBe(true);

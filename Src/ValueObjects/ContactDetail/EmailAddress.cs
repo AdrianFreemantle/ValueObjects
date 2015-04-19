@@ -1,15 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
 
 namespace ValueObjects.ContactDetail
 {
     [DataContract(Name = "EmailAddress", Namespace = "ContactDetails")]
     public struct EmailAddress : IEquatable<EmailAddress>
     {
-        private const string RegexPattern = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-        private static readonly Regex EmailPattern = new Regex(RegexPattern); 
-
         [DataMember(Name = "address")]
         private readonly string address;
 
@@ -18,17 +16,23 @@ namespace ValueObjects.ContactDetail
             if (String.IsNullOrWhiteSpace(address))
                 throw new EmailAddressException("Please provide a non empty value");
 
-            var cleanedAddress = address.ToLower().Replace(" ", "").Replace(",", ".");
-
-            if (!IsValid(cleanedAddress))
+            if (!IsValid(address))
                 throw new EmailAddressException(String.Format("The email address [{0}] is not valid", address));
 
-            this.address = cleanedAddress;
+            this.address = address;
         }
 
         public static EmailAddress Parse(string value)
         {
-            return new EmailAddress(value);
+            try
+            {
+                return new EmailAddress(value);
+            }
+            catch (EmailAddressException)
+            {
+                string cleandedAddress = TryCleanAddress(value);
+                return new EmailAddress(cleandedAddress);
+            }
         }
 
         public static bool TryParse(string value, out EmailAddress emailAddress)
@@ -37,7 +41,7 @@ namespace ValueObjects.ContactDetail
 
             try
             {
-                emailAddress = new EmailAddress(value);
+                emailAddress = Parse(value);
                 return true;
             }
             catch (EmailAddressException)
@@ -46,12 +50,38 @@ namespace ValueObjects.ContactDetail
             }
         }
 
+        private static string TryCleanAddress(string address)
+        {
+            var cleanedAddress = address.Trim().Replace(" ", "").Replace(",", ".").Trim(',', '.');
+
+            if (cleanedAddress.EndsWith("gmail", StringComparison.InvariantCultureIgnoreCase))
+                cleanedAddress = cleanedAddress + ".com";
+
+            cleanedAddress = cleanedAddress.Replace("@@", "@");
+
+            if (!cleanedAddress.Contains("@"))
+            {
+                if (cleanedAddress.Contains("2"))
+                {
+                    cleanedAddress = cleanedAddress.ReplaceLastInstanceOf('2', '@'); //common typing mistake is to miss pressing shift and getting a 2
+                }
+                else if (cleanedAddress.Count(c => c == '.') >= 2)
+                {
+                    cleanedAddress.ReplaceFirstInstanceOf('.', '@');
+                }
+            }
+
+            return cleanedAddress;
+        }
+
         public static bool IsValid(string address)
         {
             if (String.IsNullOrWhiteSpace(address))
                 return false;
 
-            return EmailPattern.IsMatch(address.ToLower());
+            var emailValidation = new EmailAddressAttribute();
+
+            return emailValidation.IsValid(address);
         }
 
         public override int GetHashCode()

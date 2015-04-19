@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace ValueObjects
+// ReSharper disable once CheckNamespace
+namespace System
 {
     internal static class StringExtensions
     {
@@ -21,7 +22,7 @@ namespace ValueObjects
             try
             {
                 var result = value.Where(Char.IsDigit).ToArray();
-                return new String(result);
+                return new string(result);
             }
             catch (Exception)
             {
@@ -42,6 +43,34 @@ namespace ValueObjects
         public static string ToAlphanumeric(this string value)
         {
             return Regex.Replace(value, "[^a-zA-Z0-9]", "");
+        }
+
+        public static string ReplaceFirstInstanceOf(this string value, char oldCharacter, char newCharacter)
+        {
+            var index = value.IndexOf(oldCharacter);
+
+            if (index > 0)
+            {
+                var stringCharacters = value.ToCharArray();
+                stringCharacters[index] = newCharacter;
+                return new string(stringCharacters); 
+            }
+
+            return value;
+        }
+
+        public static string ReplaceLastInstanceOf(this string value, char oldCharacter, char newCharacter)
+        {
+            var index = value.LastIndexOf(oldCharacter);
+
+            if (index > 0)
+            {
+                var stringCharacters = value.ToCharArray();
+                stringCharacters[index] = newCharacter;
+                return new string(stringCharacters);
+            }
+
+            return value;
         }
     }
 }

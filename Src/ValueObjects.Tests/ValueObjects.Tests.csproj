@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EmailAddressTests.cs" />
     <Compile Include="MoneyTests.cs" />
     <Compile Include="PhoneNumberTests.cs" />
     <Compile Include="CalendarMonthTests.cs" />
@@ -61,6 +62,8 @@
     <Compile Include="IdentityNumberTests.cs" />
     <Compile Include="PersonNameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensionTests.cs" />
+    <Compile Include="TitleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

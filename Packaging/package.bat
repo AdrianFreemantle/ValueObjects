@@ -1,4 +1,4 @@
-set var=0.0.38
+set var=0.0.39
 
 c:\LocalNugetPackages\nuget pack ValueObjects.nuspec -Version %var%
 
