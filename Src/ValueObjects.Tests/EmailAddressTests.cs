@@ -37,5 +37,10 @@ namespace ValueObjects.Tests
             EmailAddress.Parse("adrian.freemantle@@gmail.com").ToString().ShouldBe("adrian.freemantle@gmail.com");
         }
 
+        [TestMethod]
+        public void Validation_is_not_case_sensitive()
+        {
+            EmailAddress.Parse("AdrianFreemantle@gmail.com");
+        }
     }
 }
