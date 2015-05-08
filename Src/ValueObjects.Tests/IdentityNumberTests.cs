@@ -20,7 +20,6 @@ namespace ValueObjects.Tests
             IdentityNumber.IsValid("7503035682087");
         }
 
-
         [TestMethod]
         public void Valid_identity_number()
         {
