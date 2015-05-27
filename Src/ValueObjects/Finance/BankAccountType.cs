@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace ValueObjects.Finance
 {
     [DataContract(Name = "BankAccountType", Namespace = "Finance")]
-    public struct BankAccountType : IEquatable<BankAccountType>, IEnumerable<BankAccountType>
+    public struct BankAccountType : IEquatable<BankAccountType>
     {
         enum AccountType
         {
@@ -21,11 +21,11 @@ namespace ValueObjects.Finance
         [DataMember(Name = "type")]
         private readonly AccountType type;
 
-        public static BankAccountType Unknown { get { return new BankAccountType(AccountType.Unknown); } }
-        public static BankAccountType Current { get { return new BankAccountType(AccountType.Current); } }
-        public static BankAccountType Savings { get { return new BankAccountType(AccountType.Savings); } }
-        public static BankAccountType Transmission { get { return new BankAccountType(AccountType.Transmission); } }
-        public static BankAccountType Cheque { get { return new BankAccountType(AccountType.Current); } }
+        public static readonly BankAccountType Unknown = new BankAccountType(AccountType.Unknown);
+        public static readonly BankAccountType Current = new BankAccountType(AccountType.Current);
+        public static readonly BankAccountType Savings = new BankAccountType(AccountType.Savings);
+        public static readonly BankAccountType Transmission = new BankAccountType(AccountType.Transmission);
+        public static readonly BankAccountType Cheque = new BankAccountType(AccountType.Current); 
 
         public BankAccountType(int accountTypeId)
         {
@@ -82,11 +82,6 @@ namespace ValueObjects.Finance
         public override int GetHashCode()
         {
             return type.GetHashCode();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         public override bool Equals(object obj)

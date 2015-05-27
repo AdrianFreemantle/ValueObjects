@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace ValueObjects.Finance
 {
     [DataContract(Name = "CreditCardType", Namespace = "Finance")]
-    public struct CreditCardType : IEquatable<CreditCardType>, IEnumerable<CreditCardType>
+    public struct CreditCardType : IEquatable<CreditCardType>
     {
         enum CardTypes
         {
@@ -93,11 +93,6 @@ namespace ValueObjects.Finance
         public override int GetHashCode()
         {
             return cardType.GetHashCode();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         public override bool Equals(object obj)
