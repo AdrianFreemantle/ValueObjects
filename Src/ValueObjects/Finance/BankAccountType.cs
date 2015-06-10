@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -44,7 +43,7 @@ namespace ValueObjects.Finance
 
             var trimed = s.Trim();
 
-            if (trimed.Length == 1 && trimed.IsAllDigits())
+            if (trimed.IsAllDigits())
             {
                 return new BankAccountType(Int32.Parse(s));
             }
