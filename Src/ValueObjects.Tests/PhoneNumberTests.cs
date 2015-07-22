@@ -140,5 +140,13 @@ namespace ValueObjects.Tests
         {
             TelephoneNumber.FromString("0605693825").CanRecieveSms().ShouldBe(true);
         }
+
+
+        [TestMethod]
+        public void Can_hash_phone_number()
+        {
+            TelephoneNumber.FromString("0605693825").ToMaskedString(0, 6, '*').ShouldBe("******3825");
+            TelephoneNumber.FromString("0605693825").ToMaskedString(3, 1, '#').ShouldBe("060#693825");
+        }
     }
 }

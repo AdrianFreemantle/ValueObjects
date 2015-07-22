@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace ValueObjects.ContactDetail
@@ -236,6 +237,20 @@ namespace ValueObjects.ContactDetail
         public override string ToString()
         {
             return phoneNumber ?? String.Empty;
+        }
+
+        public string ToMaskedString(int index, int length, char mask)
+        {
+            var characters = ToString().ToCharArray();
+
+            int end = index + length;
+
+            for (int i = index; i < characters.Length && i < end; i++)
+            {
+                characters[i] = mask;
+            }
+
+            return new String(characters);
         }
     }
 }
