@@ -220,7 +220,7 @@ namespace ValueObjects.People
 
         public override string ToString()
         {
-            return Number;
+            return Number ?? String.Empty;
         }
     }
 }
