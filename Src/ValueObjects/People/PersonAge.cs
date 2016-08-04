@@ -34,7 +34,7 @@ namespace ValueObjects.People
                 age--;
             }
 
-            if (specificDate.Month == DateTime.Now.Month && dateOfBirth.Day == DateTime.Now.Day)
+            if (specificDate.Month == DateTime.Now.Month && dateOfBirth.Day <= DateTime.Now.Day)
             {
                 age++;
             }
