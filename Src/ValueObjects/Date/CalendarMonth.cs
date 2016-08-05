@@ -153,6 +153,16 @@ namespace ValueObjects.Date
             }
         }
 
+        public DateTime GetFirstDayOfMonth()
+        {
+            return this; //casts to DateTime set to first day of month
+        }
+
+        public DateTime GetLastDayOfMonth()
+        {
+            return GetFirstDayOfMonth().AddMonths(1).AddDays(-1);
+        }
+
         public override int GetHashCode()
         {
             unchecked

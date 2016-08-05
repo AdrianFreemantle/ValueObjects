@@ -25,5 +25,13 @@ namespace ValueObjects.Tests
             string calendarMonthString = calendarMonth.ToString();
             calendarMonthString.ShouldBe("2015-01");
         }
+
+        [TestMethod]
+        public void Can_get_last_day_of_month()
+        {
+            var month = new CalendarMonth(2016, 08);
+            DateTime lastDay = month.GetLastDayOfMonth();
+            lastDay.ShouldBe(new DateTime(2016, 08, 31));
+        }
     }
 }
