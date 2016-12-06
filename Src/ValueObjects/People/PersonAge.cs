@@ -24,27 +24,13 @@ namespace ValueObjects.People
             Mandate.ParameterNotDefaut(dateOfBirth, "dateOfBirth");
             Mandate.ParameterNotDefaut(specificDate, "specificDate");
 
-            int age = specificDate.Year - dateOfBirth.Year;
+            var years = specificDate.Year - dateOfBirth.Year;
+            if (specificDate.Month < dateOfBirth.Month || (specificDate.Month == dateOfBirth.Month && specificDate.Day < dateOfBirth.Day))
+                years--;
+            return new PersonAge(years);
 
-            if(age <= 0)
-                return new PersonAge(age);
 
-            if (dateOfBirth > specificDate.AddYears(-age))
-            {
-                age--;
-            }
-
-            if (specificDate.Month == DateTime.Now.Month && dateOfBirth.Day <= DateTime.Now.Day)
-            {
-                age++;
-            }
-            
-            if (specificDate.Month < DateTime.Now.Month)
-            {
-                age++;
-            }
-
-            return new PersonAge(age);
+           // return new PersonAge(age);
         }       
 
         public static implicit operator int(PersonAge age)
