@@ -42,5 +42,13 @@ namespace ValueObjects.Tests
             DateTime dateOfBirth = new DateOfBirth("01", "08", "03");
             dateOfBirth.ShouldBe(new DateTime(2001, 08, 03));
         }
+
+        [TestMethod]
+        public void Create_from_year_month_day_strings_01_birth_date_12()
+        {
+            DateOfBirth dateOfBirth = new DateOfBirth(1962, 08, 03);
+            int age = dateOfBirth.AgeAtDate(new DateTime(2017, 01, 01));
+            age.ShouldBe(38);
+        }
     }
 }
