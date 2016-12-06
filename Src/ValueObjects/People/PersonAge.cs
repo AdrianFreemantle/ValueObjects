@@ -27,10 +27,8 @@ namespace ValueObjects.People
             var years = specificDate.Year - dateOfBirth.Year;
             if (specificDate.Month < dateOfBirth.Month || (specificDate.Month == dateOfBirth.Month && specificDate.Day < dateOfBirth.Day))
                 years--;
+                
             return new PersonAge(years);
-
-
-           // return new PersonAge(age);
         }       
 
         public static implicit operator int(PersonAge age)
